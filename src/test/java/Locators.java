@@ -42,7 +42,7 @@ public class Locators {
 
         driver.findElement(By.xpath("//input[@placeholder='Name']")).sendKeys("Test");
 
-        driver.findElement(By.cssSelector("input[@placeholder='Email']")).sendKeys("john@rsa.com");
+        driver.findElement(By.xpath("//input[@type='text'][2]")).sendKeys("john@rsa.com");
 
     }
 }
