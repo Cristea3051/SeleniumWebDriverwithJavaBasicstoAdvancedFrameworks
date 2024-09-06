@@ -17,14 +17,13 @@ public static void main(String[] args) {
         // Accesez url-ul cu pagina unde vreau sa testez
         driver.get("http://crm-dash/login");
 
-
         driver.findElement(By.id("login-username")).sendKeys("victor.cristea@vebo.io");
 
         driver.findElement(By.id("login-password")).sendKeys("j8L3pc5hJ20Sjn10Lp!");
 
         driver.findElement(By.cssSelector("button.btn-alt-primary")).click();
 
-        System.out.println(driver.findElement(By.cssSelector("span.d-sm-inline-block")).getText() + " Te-ai logat crasiva!");
+        System.out.println(driver.findElement(By.cssSelector("span.d-sm-inline-block")).getText());
 
         driver.get("http://crm-dash/google-dashboard/sc-campaigns");
 
@@ -42,7 +41,9 @@ public static void main(String[] args) {
                 activeElement.sendKeys(Keys.ARROW_UP);
             }
             activeElement.sendKeys(Keys.ENTER);
-}
+
+            driver.close();
+       }
 
 }
 
