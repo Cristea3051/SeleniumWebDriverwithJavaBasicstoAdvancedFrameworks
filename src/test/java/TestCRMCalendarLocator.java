@@ -1,13 +1,13 @@
 import java.time.Duration;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.Select;
 
 public class TestCRMCalendarLocator {
-public static void main(String[] args) {
+public static void main(String[] args) throws InterruptedException {
 
         // Declaram driverul
         WebDriver driver = new ChromeDriver();
@@ -27,24 +27,19 @@ public static void main(String[] args) {
 
         driver.get("http://crm-dash/google-dashboard/sc-campaigns");
 
-        driver.findElement(By.cssSelector("i.fa-calendar")).click();
+        Thread.sleep(5000);
 
-       driver.findElement(By.xpath("(//li[@data-range-key='All Time'])[3]")).click();   
+        driver.findElement(By.cssSelector("i.fa-calendar:nth-of-type(1)")).click();
 
-       driver.findElement(By.name("sc-campaigns-list_length")).click();
+        driver.findElement(By.xpath("//div[@style='display: block; top: 222.594px; left: auto; right: 0px;'] //li[@data-range-key='All Time']")).click();   
 
-       WebElement activeElement = driver.switchTo().activeElement();
-            
-            int numberOfArrowUps = 8 - 1; 
+       WebElement staticDropdown =  driver.findElement(By.xpath("//div[@id='sc-campaigns-list_length'] //select[@name='sc-campaigns-list_length']"));
+            Select dropdown = new Select(staticDropdown);
+            dropdown.selectByIndex(0);
 
-            for (int i = 0; i < numberOfArrowUps; i++) {
-                activeElement.sendKeys(Keys.ARROW_UP);
-            }
-            activeElement.sendKeys(Keys.ENTER);
-
-            driver.close();
+            driver.findElement(By.xpath("(//button[@class='btn-block-option'] //i[@class='si si-arrow-up'])[4]")).click();
+        }
        }
 
-}
 
 

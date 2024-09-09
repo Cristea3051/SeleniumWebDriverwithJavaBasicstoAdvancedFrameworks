@@ -49,11 +49,10 @@ import org.openqa.selenium.chrome.ChromeDriver;
             Thread.sleep(2000);
             driver.findElement(By.xpath("(//a[@value=\"MAA\"])[2]")).click();
 
+            //div[@id='glsctl00_mainContent_ddl_destinationStation1_CTNR'] //a[@value='MAA']
 
 
             // (//a[@value="MAA"])[2]
-
-            
 
             // driver.close();
         }
