@@ -65,9 +65,15 @@ import org.testng.Assert;
             // Calendar select data
             driver.findElement(By.cssSelector(".ui-datepicker-days-cell-over.ui-datepicker-today")).click();
 
-            // Select roundtrip
+            // Select roundtrip acel radio de pe pagina care activeaza calendarul al doilea
             driver.findElement(By.id("ctl00_mainContent_rbtnl_Trip_1")).click();
             System.out.println(driver.findElement(By.name("ctl00$mainContent$view_date2")).isEnabled() + " asta la calendar");
+            if (driver.findElement(By.id("Div1")).getAttribute("style").contains("1")) {
+                System.out.println("its enabled");
+                Assert.assertTrue(true);
+            }else {
+                Assert.assertTrue(false);
+            }
 
 
 
