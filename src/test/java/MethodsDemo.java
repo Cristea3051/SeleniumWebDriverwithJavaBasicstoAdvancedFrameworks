@@ -1,6 +1,6 @@
 public class MethodsDemo {
 
-    public static void main (String[] args){
+    public static void main(String[] args) {
 
         MethodsDemo d = new MethodsDemo();
 
@@ -10,20 +10,18 @@ public class MethodsDemo {
         d1.getUserData();
         getData2();
 
-     }
+    }
 
-    public String getData(){
+    public String getData() {
 
         System.out.println("hello world");
         return "test data";
     }
 
-    public static String getData2(){
+    public static String getData2() {
 
         System.out.println("alt text din getData2");
         return "test data";
     }
-
-
 
 }

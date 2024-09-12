@@ -1,15 +1,15 @@
 import org.openqa.selenium.firefox.FirefoxDriver;
 
 public class FirefoxSelIntroduction {
-   public static void main(String[] args){
-         
+    public static void main(String[] args) {
+
         // Invoking Browser
         FirefoxDriver driver = new FirefoxDriver();
 
         // Metoda pentru a chema un url din browser
         driver.get("https://rahulshettyacademy.com/");
-        
-        // Metoda pentru a printa titlul paginii din tabul browserului. 
+
+        // Metoda pentru a printa titlul paginii din tabul browserului.
         // Aceasta se va printa in consola cu ajutorul System.out.println
         System.out.println(driver.getTitle());
 

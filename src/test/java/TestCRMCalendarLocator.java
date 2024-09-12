@@ -7,7 +7,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.Select;
 
 public class TestCRMCalendarLocator {
-public static void main(String[] args) throws InterruptedException {
+    public static void main(String[] args) throws InterruptedException {
 
         // Declaram driverul
         WebDriver driver = new ChromeDriver();
@@ -31,15 +31,15 @@ public static void main(String[] args) throws InterruptedException {
 
         driver.findElement(By.cssSelector("i.fa-calendar:nth-of-type(1)")).click();
 
-        driver.findElement(By.xpath("//div[@style='display: block; top: 222.594px; left: auto; right: 0px;'] //li[@data-range-key='All Time']")).click();   
+        driver.findElement(By.xpath(
+                "//div[@style='display: block; top: 222.594px; left: auto; right: 0px;'] //li[@data-range-key='All Time']"))
+                .click();
 
-       WebElement staticDropdown =  driver.findElement(By.xpath("//div[@id='sc-campaigns-list_length'] //select[@name='sc-campaigns-list_length']"));
-            Select dropdown = new Select(staticDropdown);
-            dropdown.selectByIndex(0);
+        WebElement staticDropdown = driver.findElement(
+                By.xpath("//div[@id='sc-campaigns-list_length'] //select[@name='sc-campaigns-list_length']"));
+        Select dropdown = new Select(staticDropdown);
+        dropdown.selectByIndex(0);
 
-            driver.findElement(By.xpath("(//button[@class='btn-block-option'] //i[@class='si si-arrow-up'])[4]")).click();
-        }
-       }
-
-
-
+        driver.findElement(By.xpath("(//button[@class='btn-block-option'] //i[@class='si si-arrow-up'])[4]")).click();
+    }
+}
