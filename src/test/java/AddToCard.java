@@ -12,7 +12,7 @@ public class AddToCard {
 
         WebDriver driver = new ChromeDriver();
 
-        String[] itemsNeeded = { "Cucumber", "Brocolli", "Beetroot" };
+        String[] itemsNeeded = { "Cucumber", "Cauliflower" ,"Brocolli", "Beetroot", "Carrot", "Tomato", "Beans" };
 
         driver.get("https://rahulshettyacademy.com/seleniumPractise/");
 
@@ -37,8 +37,6 @@ public class AddToCard {
             String formattedName = name[0].trim();
 
             List <String> itemsNeededList = Arrays.asList(itemsNeeded);
-
-            System.out.println(itemsNeededList);
 
             if (itemsNeededList.contains(formattedName))
 
