@@ -17,40 +17,45 @@ public class AddToCard {
 
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 
-        /* implicitlyWait seteaza timul global
-           Lucreaza in felul urmator: daca elementul pe pagina nu este gasint, 
-           selenium asteapta cateva secunde in acest caz 10 si daca in aceste secunde elementul nu apare,
-           selenium face fail la test */ 
+        /*
+         * implicitlyWait seteaza timul global
+         * Lucreaza in felul urmator: daca elementul pe pagina nu este gasint,
+         * selenium asteapta cateva secunde in acest caz 10 si daca in aceste secunde
+         * elementul nu apare,
+         * selenium face fail la test
+         */
         // driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 
-        String[] itemsNeeded = { "Cucumber", "Cauliflower" ,"Brocolli", "Beetroot", "Carrot", "Tomato", "Beans" };
+        String[] itemsNeeded = { "Cucumber", "Cauliflower", "Brocolli", "Beetroot", "Carrot", "Tomato", "Beans" };
 
         driver.get("https://rahulshettyacademy.com/seleniumPractise/");
-        
+
         Thread.sleep(3000);
 
         addItems(driver, itemsNeeded);
 
-     driver.findElement(By.cssSelector("img[alt='Cart']")).click();   
+        driver.findElement(By.cssSelector("img[alt='Cart']")).click();
 
-     driver.findElement(By.xpath("//button[text()='PROCEED TO CHECKOUT']")).click();
+        driver.findElement(By.xpath("//button[text()='PROCEED TO CHECKOUT']")).click();
 
-     wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("input.promoCode")));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("input.promoCode")));
 
-     driver.findElement(By.cssSelector("input.promoCode")).sendKeys("rahulshettyacedemy");
+        driver.findElement(By.cssSelector("input.promoCode")).sendKeys("rahulshettyacedemy");
 
-     driver.findElement(By.cssSelector("button.promoBtn")).click();
+        driver.findElement(By.cssSelector("button.promoBtn")).click();
 
-     /* ExplictiWait se foloseste exact ca espresia de mai jos si anume:
-        Declaram o variabila, in cazul de fata este wait. 
-        Dupa asta folosim expresia new WebDriverWait(driver, Duration.ofSeconds(10)) 
-        pentru a seta timpul de asteptare pentru pasul care urmeaza
-        Folosim variabila wait pentru a construi locatorul care vrem, iar el autmat va astepta
-       */
-    
-     wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("span.promoInfo")));
+        /*
+         * ExplictiWait se foloseste exact ca espresia de mai jos si anume:
+         * Declaram o variabila, in cazul de fata este wait.
+         * Dupa asta folosim expresia new WebDriverWait(driver, Duration.ofSeconds(10))
+         * pentru a seta timpul de asteptare pentru pasul care urmeaza
+         * Folosim variabila wait pentru a construi locatorul care vrem, iar el autmat
+         * va astepta
+         */
 
-     System.out.println(driver.findElement(By.cssSelector("span.promoInfo")).getText());
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("span.promoInfo")));
+
+        System.out.println(driver.findElement(By.cssSelector("span.promoInfo")).getText());
     }
 
     public static void addItems(WebDriver driver, String[] itemsNeeded)
@@ -67,7 +72,7 @@ public class AddToCard {
 
             String formattedName = name[0].trim();
 
-            List <String> itemsNeededList = Arrays.asList(itemsNeeded);
+            List<String> itemsNeededList = Arrays.asList(itemsNeeded);
 
             if (itemsNeededList.contains(formattedName))
 
