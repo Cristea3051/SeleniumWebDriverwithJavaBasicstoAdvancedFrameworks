@@ -10,9 +10,9 @@ import java.util.List;
 
 public class LoginpagePractice {
 
-    public static void main(String[] args)throws InterruptedException {
+    public static void main(String[] args) throws InterruptedException {
 
-          WebDriver driver = new ChromeDriver();
+        WebDriver driver = new ChromeDriver();
 
         driver.get("https://rahulshettyacademy.com/loginpagePractise/");
 
@@ -21,11 +21,11 @@ public class LoginpagePractice {
         driver.findElement(By.id("username")).sendKeys("rahulshettyacademy");
 
         driver.findElement(By.id("password")).sendKeys("learning");
-        
+
         driver.findElement(By.xpath("(//span[@class='radiotextsty'])[2]")).click();
 
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("button.btn-success")));
-        
+
         driver.findElement(By.cssSelector("button.btn-success")).click();
 
         WebElement role = driver.findElement(By.cssSelector("select.form-control"));
@@ -38,16 +38,16 @@ public class LoginpagePractice {
 
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("a.btn-primary")));
 
-        List <WebElement> products = driver.findElements(By.cssSelector(".card-footer .btn-info"));
+        List<WebElement> products = driver.findElements(By.cssSelector(".card-footer .btn-info"));
 
-        for(int i =0;i<products.size();i++)
-        
+        for (int i = 0; i < products.size(); i++)
+
         {
-        
-        products.get(i).click();
-        
+
+            products.get(i).click();
+
         }
         driver.findElement(By.cssSelector("a.btn-primary")).click();
     }
-                        
-    }
+
+}
