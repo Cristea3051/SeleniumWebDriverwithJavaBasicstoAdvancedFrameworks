@@ -7,15 +7,15 @@ import java.util.Iterator;
 public class MultipleWindows {
 
     public static void main(String[] args) {
-        
+
         WebDriver driver = new ChromeDriver();
 
         driver.get("https://the-internet.herokuapp.com/windows");
 
         driver.findElement(By.xpath("//a[text()='Click Here']")).click();
 
-        Set<String> windows = driver.getWindowHandles(); /*toate ide-urile ale taburilor sunt setate aici */
-        
+        Set<String> windows = driver.getWindowHandles(); /* toate ide-urile ale taburilor sunt setate aici */
+
         Iterator<String> id = windows.iterator();
         String tab1 = id.next();
         String tab2 = id.next();
