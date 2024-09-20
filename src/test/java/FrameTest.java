@@ -19,6 +19,7 @@ public class FrameTest {
          * 4. Setam actionul 
          * 5. Stocam elementele cu care vreau sa fac drag si in care vreau sa fac drop
          * 6. Setez metoda prin care trebuie sa se faca drag & drop
+         * 7. Fac switch la default content unde ar trebui sa am acces deja la toate elementele din dom
          */
 
         WebElement frame = driver.findElement(By.cssSelector("iframe.demo-frame"));
@@ -30,5 +31,6 @@ public class FrameTest {
         WebElement source = driver.findElement(By.id("draggable"));
         WebElement target = driver.findElement(By.id("droppable"));
         drag.dragAndDrop(source, target).build().perform();
+        driver.switchTo().defaultContent();
     }
 }
