@@ -1,4 +1,5 @@
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -27,7 +28,10 @@ public class Scope {
           // Click on each link in the column and chech if pages are opening
 
           for (int i=1; i<columnFooterDriver.findElements(By.tagName("a")).size(); i++){
-            columnFooterDriver.findElements(By.tagName("a")).get(i).click();
+
+            String clickToOpenNewTab = Keys.chord(Keys.CONTROL,Keys.ENTER);
+            
+            columnFooterDriver.findElements(By.tagName("a")).get(i).sendKeys(clickToOpenNewTab);
           }
 
     }
