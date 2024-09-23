@@ -9,16 +9,19 @@ public class SettingsHelper {
 
     public SettingsHelper(WebDriver driver) {
         this.driver = driver;
+
+        driver.findElement(By.cssSelector(".fa-table")).click();
+
+        driver.findElement(By.id("setting-name")).sendKeys("ProxyAutoTableSetting");
     }
 
-    // Selectează valorile multiple în funcție de opțiuni
-    public void selectMultipleValuesByValue(String[] values) {
+    public void selectMultipleValuesByIndex(int[] indices) {
         WebElement selectElement = driver.findElement(By.cssSelector("select[id='swap-from']"));
         Select settings = new Select(selectElement);
 
         if (settings.isMultiple()) {
-            for (String value : values) {
-                settings.selectByValue(value);
+            for (int index : indices) {
+                settings.selectByIndex(index);
             }
         }
     }
