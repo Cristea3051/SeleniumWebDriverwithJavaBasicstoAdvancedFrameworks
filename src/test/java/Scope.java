@@ -10,7 +10,6 @@ import org.openqa.selenium.chrome.ChromeDriver;
 public class Scope {
 
 	public static void main(String[] args) throws InterruptedException {
-		// TODO Auto-generated method stub
 		
 //1. Give me the count of links on the page.
 		//2. Count of footer section-
