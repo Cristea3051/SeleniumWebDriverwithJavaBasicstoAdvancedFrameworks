@@ -34,6 +34,7 @@ public class PrintRowsColumns {
 
         System.out.println("Total Rows: " + totalRows);
         System.out.println("Total Columns: " + totalColumns);
-
+    
+        driver.quit();
     }
 }
