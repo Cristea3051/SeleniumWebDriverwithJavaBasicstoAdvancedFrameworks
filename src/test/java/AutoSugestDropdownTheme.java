@@ -12,7 +12,7 @@ public class AutoSugestDropdownTheme {
 
         driver.get("https://rahulshettyacademy.com/AutomationPractice/");
 
-         driver.findElement(By.id("autocomplete")).sendKeys("ro");
+        driver.findElement(By.id("autocomplete")).sendKeys("ro");
         Thread.sleep(4000);
         List<WebElement> options = driver.findElements(By.cssSelector(".ui-menu-item-wrapper"));
         for (WebElement option : options) {
