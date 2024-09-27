@@ -24,7 +24,6 @@ public class ScrollPerform {
         int sum =0;
         for (int i=0; i<values.size(); i++){
             // Aici scot valorile ca text stirng
-            values.get(i).getText();
             // Convertesc din string in integer
            System.out.println(Integer.parseInt(values.get(i).getText()));
         //    Adun intre ele pentru a suma
