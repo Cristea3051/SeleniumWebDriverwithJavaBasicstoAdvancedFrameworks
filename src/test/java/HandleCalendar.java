@@ -40,8 +40,8 @@ public class HandleCalendar {
 
         for (int i = 0; i < actualList.size(); i++) {
             System.out.println(actualList.get(i).getAttribute("value"));
+            Thread.sleep(2000);
             Assert.assertEquals(actualList.get(i).getAttribute("value"), expectedLsit[i + 1]);
         }
-        driver.close();
     }
 }

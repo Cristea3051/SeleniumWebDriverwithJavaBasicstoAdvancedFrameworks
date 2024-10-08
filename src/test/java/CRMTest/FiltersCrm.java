@@ -10,77 +10,96 @@ import java.util.Random;
 import java.util.ArrayList;
 
 public class FiltersCrm {
-    public static void main(String[] args) throws InterruptedException{
+    public static void main(String[] args) throws InterruptedException {
         WebDriver driver = new ChromeDriver();
 
-            driver.get("http://crm-dash/login");
+        driver.get("http://crm-dash/login");
 
-            Thread.sleep(2000); 
-            driver.findElement(By.id("login-username")).sendKeys("victor.cristea@vebo.io");
-    
-            driver.findElement(By.id("login-password")).sendKeys("Morris22##");
-    
-            driver.findElement(By.cssSelector("button.btn-alt-primary")).click();
-            // Navighează la pagina cu filtrul
-            driver.get("http://crm-dash/google-accounts");
+        Thread.sleep(2000); 
+        driver.findElement(By.id("login-username")).sendKeys("victor.cristea@vebo.io");
 
-            // Așteaptă ca filtrul să fie vizibil
-            Thread.sleep(2000); 
-            driver.findElement(By.cssSelector("div.google-accounts-list-filter-title")).click();
-            Thread.sleep(2000); 
-            List<WebElement> filterItems = driver.findElements(By.cssSelector(".multiselect-item"));
+        driver.findElement(By.id("login-password")).sendKeys("Morris22##");
+
+        driver.findElement(By.cssSelector("button.btn-alt-primary")).click();
         
-            for (WebElement item : filterItems) {
-                String filterName = item.getText();
-                System.out.println("Filter Name: " + filterName);
+        // Navighează la pagina cu filtrul
+        driver.get("http://crm-dash/google-accounts");
+
+        // Așteaptă ca filtrul să fie vizibil
+        Thread.sleep(2000);
+        
+        // Click pe secțiunea de filtrare pentru a o extinde
+        driver.findElement(By.cssSelector("div.google-accounts-list-filter-title")).click();
+        Thread.sleep(2000);
+        
+        // Obține toate elementele de filtru
+        List<WebElement> filterItems = driver.findElements(By.cssSelector(".multiselect-item"));
+        
+        // Lista care va conține numele filtrelor disponibile
+        List<String> filterNames = new ArrayList<>();
+        
+        for (WebElement item : filterItems) {
+            String filterName = item.getText().replaceAll(" ", ""); // Elimină spațiile din nume
+            filterNames.add(filterName);
+        }
+        
+        // Verifică dacă există suficiente filtre pentru a selecta 3 random
+        if (filterNames.size() < 3) {
+            System.out.println("Nu sunt suficiente filtre disponibile pentru a selecta 3.");
+            return; // Iese dacă nu sunt suficiente filtre
+        }
+
+        // Alege 3 filtre random
+        Random random = new Random();
+        for (int i = 0; i < 3; i++) {
+            // Obține un index aleatoriu pentru filtru
+            int randomFilterIndex = random.nextInt(filterNames.size());
+            String randomFilterName = filterNames.get(randomFilterIndex);
+            System.out.println("Filtrul selectat: " + randomFilterName);
             
-                // Elimină spațiile din numele filtrului
-                String dataCollapseValue = filterName.replaceAll(" ", "");
-            
-                // Folosește dataCollapseValue în selectorul CSS
-               driver.findElement(By.cssSelector("div[data-collapse='" + dataCollapseValue + "']")).click();
-                Thread.sleep(2000);
+            // Click pe filtrul aleatoriu
+            driver.findElement(By.cssSelector("div[data-collapse='" + randomFilterName + "']")).click();
+            Thread.sleep(2000);
+
+            // Obține checkbox-urile pentru filtrul selectat
+            List<WebElement> checkboxes = driver.findElements(By.cssSelector("#google-accounts-list-filter-" + randomFilterName + " .custom-control-input"));
+
+            // Lista pentru a stoca valorile din checkbox-uri
+            List<String> values = new ArrayList<>();
+
+            // Parcurge checkbox-urile și adaugă valorile lor în lista values
+            for (WebElement checkbox : checkboxes) {
+                String value = checkbox.getAttribute("value");
+                values.add(value);
             }
-            driver.findElement(By.cssSelector("div[data-collapse='AccountOwner']")).click();
-       // Extrage checkbox-urile pentru Account Owner
-       List<WebElement> checkboxes = driver.findElements(By.cssSelector("#google-accounts-list-filter-AccountOwner .custom-control-input"));
-        
-       // Lista pentru a stoca valorile
-       List<String> values = new ArrayList<>();
 
-       // Parcurge lista de checkbox-uri și extrage valorile
-       for (WebElement checkbox : checkboxes) {
-           String value = checkbox.getAttribute("value");
-           values.add(value); // Adaugă valoarea la listă
-           System.out.println("Account Owner: " + value);
-       }
-       
-       // Verifică dacă sunt suficiente valori pentru a selecta 3
-       if (values.size() < 3) {
-           System.out.println("Nu sunt suficiente valori pentru a selecta 3 checkbox-uri.");
-           return; // Ieși din program dacă nu sunt suficiente valori
-       }
+            // Verifică dacă există suficiente valori pentru a selecta 3
+            if (values.size() < 2) {
+                System.out.println("Nu sunt suficiente valori în filtru " + randomFilterName);
+                driver.findElement(By.cssSelector("div[data-collapse='" + randomFilterName + "']")).click(); // Închide filtrul
+                continue; // Treci la următorul filtru dacă nu sunt suficiente valori
+            }
 
-       // Alege 3 indexuri aleatorii
-       Random random = new Random();
-       for (int i = 0; i < 3; i++) {
-           // Obține un index aleatoriu
-           int randomIndex = random.nextInt(values.size());
-           String randomValue = values.get(randomIndex);
-           Thread.sleep(2000); 
-           // Click pe checkbox folosind JavaScript
-           JavascriptExecutor js = (JavascriptExecutor) driver;
-           js.executeScript("arguments[0].click();", driver.findElement(By.cssSelector("input[value='" + randomValue + "']")));
-           Thread.sleep(2000); 
-           // Afișează care checkbox a fost click-uit
-           System.out.println("Checkbox clicked with value: " + randomValue);
-       }
-       Thread.sleep(2000); 
-       driver.findElement(By.cssSelector("div[data-collapse='AccountOwner']")).click();
+            // Alege 3 valori random și selectează checkbox-urile corespunzătoare
+            for (int j = 0; j < 2; j++) {
+                int randomValueIndex = random.nextInt(values.size());
+                String randomValue = values.get(randomValueIndex);
 
-       Thread.sleep(2000); 
+                // Click pe checkbox-ul corespunzător
+                JavascriptExecutor js = (JavascriptExecutor) driver;
+                js.executeScript("arguments[0].click();", driver.findElement(By.cssSelector("input[value='" + randomValue + "']")));
+                Thread.sleep(2000);
+
+                System.out.println("Checkbox clicked with value: " + randomValue);
+            }
+
+            // Închide filtrul curent
+            driver.findElement(By.cssSelector("div[data-collapse='" + randomFilterName + "']")).click();
+            Thread.sleep(2000);
+        }
+
+        // După selectarea celor 3 filtre și checkbox-uri random
         driver.findElement(By.id("google-accounts-list_wrapper")).click();
-            
-        } 
-            
+        Thread.sleep(2000);
     }
+}
