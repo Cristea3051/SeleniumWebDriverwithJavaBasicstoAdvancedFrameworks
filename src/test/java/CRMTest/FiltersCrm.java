@@ -38,7 +38,7 @@ public class FiltersCrm {
                 String dataCollapseValue = filterName.replaceAll(" ", "");
             
                 // Folosește dataCollapseValue în selectorul CSS
-               System.err.println(driver.findElement(By.cssSelector("div[data-collapse='" + dataCollapseValue + "']")));
+               driver.findElement(By.cssSelector("div[data-collapse='" + dataCollapseValue + "']")).click();
                 Thread.sleep(2000);
             }
             driver.findElement(By.cssSelector("div[data-collapse='AccountOwner']")).click();
