@@ -79,6 +79,16 @@ public class FiltersCrm {
                 driver.findElement(By.cssSelector("div[data-collapse='" + randomFilterName + "']")).click(); // Închide filtrul
                 continue; // Treci la următorul filtru dacă nu sunt suficiente valori
             }
+                driver.findElement(By.cssSelector("div.flatpickr-calendar.open span.flatpickr-day.today")).click();
+
+                WebElement prevMonth = driver.findElement(By.cssSelector("div.flatpickr-calendar.open span.flatpickr-prev-month"));
+                for (int k=0; k<4; k++){
+                prevMonth.click();
+                }
+               Thread.sleep(5000);
+               driver.findElement(By.xpath("//div[contains(@class, 'flatpickr-calendar') and contains(@class, 'open')]//span[text()='13']")).click();
+ 
+               driver.findElement(By.id("google-accounts-list_wrapper")).click();
 
             // Alege 3 valori random și selectează checkbox-urile corespunzătoare
             for (int j = 0; j < 2; j++) {
@@ -92,6 +102,8 @@ public class FiltersCrm {
 
                 System.out.println("Checkbox clicked with value: " + randomValue);
             }
+
+
 
             // Închide filtrul curent
             driver.findElement(By.cssSelector("div[data-collapse='" + randomFilterName + "']")).click();
