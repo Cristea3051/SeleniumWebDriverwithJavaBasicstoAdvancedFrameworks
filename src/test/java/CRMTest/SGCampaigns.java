@@ -8,8 +8,6 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import java.time.Duration;
-
-
 import java.util.List;
 import java.util.Random;
 import java.util.ArrayList;
@@ -28,6 +26,8 @@ public class SGCampaigns {
         // Navighează la pagina cu filtrul
         driver.get("http://crm-dash/google-accounts");
 
+        Thread.sleep(2000);
+        driver.findElement(By.cssSelector(".phpdebugbar-close-btn")).click();
         // Așteaptă ca filtrul să fie vizibil
         Thread.sleep(2000);
 
@@ -60,8 +60,15 @@ public class SGCampaigns {
             String randomFilterName = filterNames.get(randomFilterIndex);
             System.out.println("Filtrul selectat: " + randomFilterName);
 
-            // Click pe filtrul aleatoriu
-            driver.findElement(By.cssSelector("div[data-collapse='" + randomFilterName + "']")).click();
+            WebElement filterElement = driver
+                    .findElement(By.cssSelector("div[data-collapse='" + randomFilterName + "']"));
+
+            JavascriptExecutor jsc = (JavascriptExecutor) driver;
+            jsc.executeScript("arguments[0].scrollIntoView(true);", filterElement);
+
+            Thread.sleep(1000);
+
+            filterElement.click();
             Thread.sleep(2000);
 
             // Obține checkbox-urile pentru filtrul selectat
@@ -88,10 +95,14 @@ public class SGCampaigns {
                 WebElement dateRangeInput = dateRangeInputs.get(0); // Selectează primul input
                 Thread.sleep(1000);
 
+                String placeholderValue = dateRangeInput.getAttribute("placeholder");
                 // Așteaptă ca calendarul să fie vizibil
                 WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-                driver.findElement(By.cssSelector(".js-flatpickr.date-range-input[placeholder='"+dateRangeInput+"']")).click();
+                WebElement inputDatarange =  driver.findElement(By.cssSelector(".js-flatpickr.date-range-input[placeholder='"+placeholderValue+"']"));
+                jsc.executeScript("arguments[0].click();", inputDatarange);
+                Thread.sleep(3000);
 
+                driver.findElement(By.xpath("//div[contains(@class, 'flatpickr-calendar') and contains(@class, 'open')]//span[text()='13']")).click();
                 // Navighează cu 4 luni înapoi
                 WebElement prevMonth = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("div.flatpickr-calendar.open span.flatpickr-prev-month")));
                 for (int k = 0; k < 4; k++) {
