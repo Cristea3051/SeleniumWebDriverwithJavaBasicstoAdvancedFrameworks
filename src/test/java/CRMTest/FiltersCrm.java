@@ -23,7 +23,7 @@ public class FiltersCrm {
         login(driver);
         
         // Navigate to the Google Accounts page
-        driver.get("http://crm-dash/google-accounts");
+        driver.get("http://crm-dash/google-dashboard/sg-campaigns");
         Thread.sleep(2000);
         driver.findElement(By.cssSelector(".phpdebugbar-close-btn")).click();
    
