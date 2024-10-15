@@ -7,113 +7,167 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+
 import java.time.Duration;
-
-
 import java.util.List;
 import java.util.Random;
 import java.util.ArrayList;
 
 public class FiltersCrm {
+    
     public static void main(String[] args) throws InterruptedException {
         WebDriver driver = new ChromeDriver();
+        JavascriptExecutor jsc = (JavascriptExecutor) driver;
+        
+        // Login to the system
+        login(driver);
+        
+        // Navigate to the Google Accounts page
+        driver.get("http://crm-dash/google-accounts");
+        Thread.sleep(2000);
+        driver.findElement(By.cssSelector(".phpdebugbar-close-btn")).click();
+   
+        String currentUrl = driver.getCurrentUrl();
+        String[] urlParts = currentUrl.split("/");
+        String locator = urlParts[urlParts.length - 1];  // Extract the last part of the URL
 
+        // Expand the filter section
+        Thread.sleep(2000);
+        driver.findElement(By.cssSelector("div." + locator + "-list-filter-title")).click();
+        Thread.sleep(2000);
+
+        // Get all filter items
+        List<WebElement> filterItems = driver.findElements(By.cssSelector(".multiselect-item"));
+        List<String> filterNames = getFilterNames(filterItems);
+
+        // Ensure there are enough filters
+        if (filterNames.size() < 3) {
+            System.out.println("Not enough filters available to select 3.");
+            driver.quit();
+            return;
+        }
+
+        // Randomly select and interact with 3 filters
+        Random random = new Random();
+        for (int i = 0; i < 3; i++) {
+            String randomFilterName = getRandomFilter(random, filterNames);
+            System.out.println("Selected filter: " + randomFilterName);
+
+            WebElement filterElement = driver.findElement(By.cssSelector("div[data-collapse='" + randomFilterName + "']"));
+            filterElement.click();
+            Thread.sleep(2000);
+
+            interactWithFilter(driver, jsc, locator, randomFilterName);
+            
+            // Close the filter after interaction
+            driver.findElement(By.cssSelector("div[data-collapse='" + randomFilterName + "']")).click();
+            Thread.sleep(2000);
+        }
+
+        // Click outside to confirm the selections
+        driver.findElement(By.id(locator + "-list_wrapper")).click();
+        Thread.sleep(2000);
+
+        // Close the browser
+        driver.quit();
+    }
+
+    // Function for logging in to the system
+    public static void login(WebDriver driver) throws InterruptedException {
         driver.get("http://crm-dash/login");
-
         Thread.sleep(2000);
         driver.findElement(By.id("login-username")).sendKeys("victor.cristea@vebo.io");
         driver.findElement(By.id("login-password")).sendKeys("Morris22##");
         driver.findElement(By.cssSelector("button.btn-alt-primary")).click();
+    }
 
-        // Navighează la pagina cu filtrul
-        driver.get("http://crm-dash/google-accounts");
-
-        // Așteaptă ca filtrul să fie vizibil
-        Thread.sleep(2000);
-        driver.findElement(By.cssSelector(".phpdebugbar-close-btn")).click();
-
-        Thread.sleep(2000);
-        // Click pe secțiunea de filtrare pentru a o extinde
-        driver.findElement(By.cssSelector("div.google-accounts-list-filter-title")).click();
-        Thread.sleep(2000);
-
-        // Obține toate elementele de filtru
-        List<WebElement> filterItems = driver.findElements(By.cssSelector(".multiselect-item"));
-
-        // Lista care va conține numele filtrelor disponibile
+    // Get filter names from filter elements
+    public static List<String> getFilterNames(List<WebElement> filterItems) {
         List<String> filterNames = new ArrayList<>();
-
         for (WebElement item : filterItems) {
-            String filterName = item.getText().replaceAll(" ", ""); // Elimină spațiile din nume
+            String filterName = item.getText().replaceAll(" ", "");
             filterNames.add(filterName);
         }
+        return filterNames;
+    }
 
-        // Verifică dacă există suficiente filtre pentru a selecta 3 random
-        if (filterNames.size() < 3) {
-            System.out.println("Nu sunt suficiente filtre disponibile pentru a selecta 3.");
-            return; // Iese dacă nu sunt suficiente filtre
+    // Select a random filter
+    public static String getRandomFilter(Random random, List<String> filterNames) {
+        int randomFilterIndex = random.nextInt(filterNames.size());
+        return filterNames.get(randomFilterIndex);
+    }
+
+    // Interact with checkboxes, date ranges, and min/max inputs
+    public static void interactWithFilter(WebDriver driver, JavascriptExecutor jsc, String locator, String randomFilterName) throws InterruptedException {
+        List<WebElement> checkboxes = driver.findElements(By.cssSelector("#" + locator + "-list-filter-" + randomFilterName + " .custom-control-input"));
+        List<WebElement> dateRangeInputs = driver.findElements(By.cssSelector("#" + locator + "-list-filter-" + randomFilterName + " .js-flatpickr.date-range-input"));
+        List<WebElement> minMaxInputs = driver.findElements(By.cssSelector("#" + locator + "-list-filter-" + randomFilterName + " input[placeholder='Min'], #" + locator + "-list-filter-" + randomFilterName + " input[placeholder='Max']"));
+
+        if (!checkboxes.isEmpty()) {
+            selectRandomCheckboxes(driver, checkboxes, jsc);
+        } else if (!dateRangeInputs.isEmpty()) {
+            selectDateRange(driver, jsc, dateRangeInputs);
+        } else if (minMaxInputs.size() == 2) {
+            setRandomMinMax(driver, minMaxInputs);
+        } else {
+            System.out.println("No valid inputs found for the filter.");
         }
+    }
 
-        // Alege 3 filtre random
+    // Select 3 random checkboxes
+    public static void selectRandomCheckboxes(WebDriver driver, List<WebElement> checkboxes, JavascriptExecutor js) throws InterruptedException {
         Random random = new Random();
-        for (int i = 0; i < 3; i++) {
-            // Obține un index aleatoriu pentru filtru
-            int randomFilterIndex = random.nextInt(filterNames.size());
-            String randomFilterName = filterNames.get(randomFilterIndex);
-            System.out.println("Filtrul selectat: " + randomFilterName);
-
-            // Click pe filtrul aleatoriu
-            driver.findElement(By.cssSelector("div[data-collapse='" + randomFilterName + "']")).click();
+        for (int j = 0; j < 3 && j < checkboxes.size(); j++) {
+            int randomCheckboxIndex = random.nextInt(checkboxes.size());
+            WebElement checkbox = checkboxes.get(randomCheckboxIndex);
+            js.executeScript("arguments[0].click();", checkbox);
             Thread.sleep(2000);
-
-            // Obține checkbox-urile pentru filtrul selectat
-            List<WebElement> checkboxes = driver.findElements(By.cssSelector("#google-accounts-list-filter-" + randomFilterName + " .custom-control-input"));
-            // Obține input-urile pentru intervalul de date
-            List<WebElement> dateRangeInputs = driver.findElements(By.cssSelector("#google-accounts-list-filter-" + randomFilterName + " .js-flatpickr.date-range-input"));
-
-            // Dacă există checkbox-uri, selectează 3 aleatorii
-            if (!checkboxes.isEmpty()) {
-                Random checkboxRandom = new Random();
-                for (int j = 0; j < 3 && j < checkboxes.size(); j++) {
-                    int randomCheckboxIndex = checkboxRandom.nextInt(checkboxes.size());
-                    WebElement checkbox = checkboxes.get(randomCheckboxIndex);
-                    JavascriptExecutor js = (JavascriptExecutor) driver;
-                    js.executeScript("arguments[0].click();", checkbox);
-                    Thread.sleep(2000);
-                    System.out.println("Checkbox clicked with value: " + checkbox.getAttribute("value"));
-                }
-            } 
-            // Dacă nu există checkbox-uri, verifică input-urile pentru intervalul de date
-            else if (!dateRangeInputs.isEmpty()) {
-                System.out.println("Se selectează interval de date.");
-                // Click pe input pentru a deschide calendarul
-                WebElement dateRangeInput = dateRangeInputs.get(0); // Selectează primul input
-                Thread.sleep(1000);
-                // Așteaptă ca calendarul să fie vizibil
-                WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-                driver.findElement(By.cssSelector(".js-flatpickr.date-range-input[placeholder='"+dateRangeInput+"']")).click();
-
-                // Navighează cu 4 luni înapoi
-                WebElement prevMonth = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("div.flatpickr-calendar.open span.flatpickr-prev-month")));
-                for (int k = 0; k < 4; k++) {
-                    prevMonth.click();
-                }
-                Thread.sleep(2000);
-
-                // Selectează ziua 13 din calendar
-                driver.findElement(By.xpath("//div[contains(@class, 'flatpickr-calendar') and contains(@class, 'open')]//span[text()='13']")).click();
-            }
-
-            // Închide filtrul curent
-            driver.findElement(By.cssSelector("div[data-collapse='" + randomFilterName + "']")).click();
-            Thread.sleep(2000);
+            System.out.println("Checkbox clicked with value: " + checkbox.getAttribute("value"));
         }
+    }
 
-        // După selectarea celor 3 filtre
-        driver.findElement(By.id("google-accounts-list_wrapper")).click();
+    // Select a date range from the calendar
+    public static void selectDateRange(WebDriver driver, JavascriptExecutor jsc, List<WebElement> dateRangeInputs) throws InterruptedException {
+        System.out.println("Selecting date range.");
+        WebElement dateRangeInput = dateRangeInputs.get(0);
+        Thread.sleep(1000);
+
+        String placeholderValue = dateRangeInput.getAttribute("placeholder");
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        WebElement inputDatarange = driver.findElement(By.cssSelector(".js-flatpickr.date-range-input[placeholder='" + placeholderValue + "']"));
+        jsc.executeScript("arguments[0].click();", inputDatarange);
+        Thread.sleep(3000);
+
+        driver.findElement(By.xpath("//div[contains(@class, 'flatpickr-calendar') and contains(@class, 'open')]//span[text()='13']")).click();
+        WebElement prevMonth = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("div.flatpickr-calendar.open span.flatpickr-prev-month")));
+        for (int k = 0; k < 4; k++) {
+            prevMonth.click();
+        }
         Thread.sleep(2000);
 
-        // Închide browser-ul
-        driver.quit();
+        driver.findElement(By.xpath("//div[contains(@class, 'flatpickr-calendar') and contains(@class, 'open')]//span[text()='13']")).click();
+    }
+
+    // Set random values for min and max inputs
+    public static void setRandomMinMax(WebDriver driver, List<WebElement> minMaxInputs) {
+        Random random = new Random();
+        int randomMinValue = random.nextInt(1000) + 1;  // Random value between 1 and 1000
+        int randomMaxValue = random.nextInt(4000) + 1001;  // Random value between 1001 and 5000
+
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+
+        // Set min value
+        WebElement minInput = minMaxInputs.get(0);
+        wait.until(ExpectedConditions.visibilityOf(minInput));
+        minInput.clear();
+        minInput.sendKeys(String.valueOf(randomMinValue));
+
+        // Set max value
+        WebElement maxInput = minMaxInputs.get(1);
+        wait.until(ExpectedConditions.visibilityOf(maxInput));
+        maxInput.clear();
+        maxInput.sendKeys(String.valueOf(randomMaxValue));
+
+        System.out.println("Min value set to: " + randomMinValue + ", Max value set to: " + randomMaxValue);
     }
 }
