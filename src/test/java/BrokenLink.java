@@ -8,7 +8,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.testng.Assert;
+import org.testng.asserts.SoftAssert;
 
 public class BrokenLink {
 
@@ -21,6 +21,7 @@ public class BrokenLink {
 
 
         List<WebElement> links = driver.findElements(By.cssSelector("li[class='gf-li'] a"));
+        SoftAssert ass = new SoftAssert();
 
         for (WebElement link : links) {
             // Extrage URL-ul din atributul "href" al fiecărui link
@@ -34,12 +35,8 @@ public class BrokenLink {
             // Obține codul de răspuns HTTP
             int responseCode = connection.getResponseCode();
             System.out.println("Response Code for URL: " + url + " ----- and name: " +  link.getText()  +" is " + responseCode);
-        
             // Verifică dacă răspunsul HTTP este de eroare (cod > 400)
-            if (responseCode > 403) {
-                driver.quit();
-                Assert.fail("The link with URL " + url + " is broken with response code: " + responseCode);
-            }
+            ass.assertTrue(responseCode < 400, "The link with URL " + url + " is broken with response code: " + responseCode);
         }
 
         // Face print la statutul curent al paginii care este acesata
