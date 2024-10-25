@@ -71,5 +71,6 @@ public class Test1 {
         }).count();
         System.out.println(d);
     }
+    // Comitul de pe 25.10.24
 
 }
