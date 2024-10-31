@@ -14,6 +14,7 @@ public class AddToCard {
     public static void main(String[] args) throws InterruptedException {
 
         WebDriver driver = new ChromeDriver();
+        driver.manage().window().maximize();
 
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 
