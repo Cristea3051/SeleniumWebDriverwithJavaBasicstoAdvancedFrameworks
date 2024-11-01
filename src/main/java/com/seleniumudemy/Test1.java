@@ -66,11 +66,18 @@ public class Test1 {
         // How to use filter in stream API
       long d =  Stream.of("Andreea","Bogdan","Claudia","Debil2").filter(s->
         {  
-            s.startsWith("A");
-            return false;
+            s.startsWith("D");
+            return true;
         }).count();
         System.out.println(d);
+        names.stream()
+     .filter(s -> s.startsWith("D"))
+     .forEach(System.out::println); 
+
+         // Comitul de pe 25.10.24
+         // Print all the names from array list
+         Long e = names.stream().filter(s -> s.startsWith("D")).count();
+         System.out.println("Număr de nume care încep cu 'D': " + e);
     }
-    // Comitul de pe 25.10.24
 
 }
