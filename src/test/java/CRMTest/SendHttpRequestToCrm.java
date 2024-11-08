@@ -1,11 +1,11 @@
-package com.seleniumudemy;
+package CRMTest;
 
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-public class Test2 {
+public class SendHttpRequestToCrm {
     public static void main(String[] args) {
         ExecutorService executor = Executors.newFixedThreadPool(200); // numărul de thread-uri
 

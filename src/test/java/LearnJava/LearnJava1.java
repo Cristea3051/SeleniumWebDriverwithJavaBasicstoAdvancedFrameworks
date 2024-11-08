@@ -1,11 +1,10 @@
-package com.seleniumudemy;
-
+package LearnJava;
 import java.util.ArrayList;
 import java.util.stream.Stream;
 
 import org.testng.annotations.Test;
 
-public class Test1 {
+public class LearnJava1 {
 
     public static void main(String[] args) {
         // Prima metoda de filtrare care implica un array care este parcurs si iterat cu un for
@@ -78,4 +77,5 @@ public class Test1 {
         long e = names.stream().filter(s -> s.startsWith("D")).count();
         System.out.println("Număr de nume care încep cu 'D': " + e);
     }
+
 }
