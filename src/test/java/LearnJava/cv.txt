@@ -1,0 +1,42 @@
+Despre experienta mea ca QA la compania Identi: 
+- Am fost responsabil de asigurarea calitatii produselor pentru un sistem de cloaking si un CRM plus testarea diferitor LP-uri. Pentru a asigura caliatatea produselor am folosit mai multe instrumente.
+- Am construit suite de teste automatizate pentru a optimiza procesul de testare si a mari calitatea produselor
+ Am avut urmatoarele responsabilitati: 
+- Executarea scenariilor de tastare si documentarea lor
+- Raportarea bug -urilor si crearea tiketelor in jira
+- Executarea regresiilor si testelor de integrare 
+- Executarea testelor de sarcina/rezistenta
+- Executarea testelor de compatibiliatate pe diferite platforme incepand cu platforme desktop terminand cu tablete si telefoane foldable
+- Comunicarea cu developerii, project/product managerii si CTO pentru a raporta problemele gasite si a cauta solutii pentru a fi rezolvate
+- Scrierea si mentinearea documentatiei atat pe partea de bussines procees cat si pe partea tehnica
+- Testarea API - REstfull
+- Executarea testelor de performata/sarcina 
+- Executarea testelor automatizate
+Tooluri folosite: 
+- Jira
+- Zephyr
+- Linux
+- Docker
+- Postman/Insomnia
+- Git
+- Browserstack
+
+Ce cunosc: 
+- Html -Medium
+- CSS - Basic 
+- PHP/Laravel -Basic
+- Selenium Webrdiver - Medium 
+- Java - Basic
+- JS - Basic 
+- Bash scripting - Basic 
+- MySQL/ MariaDB - Basic
+
+Despre experienta mea ca profesor: 
+- Ca profesor de informatica am predat lectii conform curiculei scolare incepand cu bazele calculatoarlor terminand cu diferite tooluri de introducere in programare cum ar fi Scratch.
+- Am asigurat buna desfasurare a orelor si am facut ore de evaluare pentru a colecta feedback de la elevi. 
+- Alte responsabilitati birocratice
+
+Educatie si certificari: 
+- Studii universitare de licenta in psihologie la Universitatea de Stat din Moldova
+- Cursul de QA Manual  predeat de CodeAcademy Molodva 
+- Cursul de QA Automation predat de CodeAcademy Moldova
