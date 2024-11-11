@@ -9,7 +9,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
 
-public class LiveDemo {
+public class FilterDataLoopInfoFromTable {
 
     public static void main(String[] args) throws InterruptedException {
         
