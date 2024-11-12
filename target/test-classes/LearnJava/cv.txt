@@ -40,3 +40,92 @@ Educatie si certificari:
 - Studii universitare de licenta in psihologie la Universitatea de Stat din Moldova
 - Cursul de QA Manual  predeat de CodeAcademy Molodva 
 - Cursul de QA Automation predat de CodeAcademy Moldova
+
+-------------------------------------------------------------------------------------------------------------
+
+Experiență Profesională
+QA Specialist / QA Developer
+Identi, [Perioada de angajare]
+
+Responsabil de asigurarea calității produselor pentru un sistem de cloaking și un CRM, precum și testarea diferitelor LP-uri.
+Creat suite de teste automatizate pentru a optimiza procesul de testare și a îmbunătăți calitatea produselor.
+Executat scenarii de testare și documentat rezultatele acestora.
+Raportat bug-uri și creat tichete în Jira pentru monitorizarea problemelor.
+Realizat teste de regresie, integrare, sarcină/rezistență și compatibilitate pe diverse platforme, inclusiv desktop și dispozitive mobile pliabile.
+Colaborat eficient cu dezvoltatori, project/product manageri și CTO pentru a raporta problemele și a găsi soluții.
+Scris și menținut documentație de business și tehnică.
+Testat API-uri RESTful și efectuat teste de performanță.
+Utilizat tool-uri precum: Jira, Zephyr, Linux, Docker, Postman/Insomnia, Git, Browserstack.
+Profesor de Informatică
+[Instituția, Perioada de angajare]
+
+Predat lecții conform curriculei școlare, de la bazele calculatoarelor până la introducere în programare cu Scratch.
+Asigurat desfășurarea optimă a orelor și efectuat sesiuni de evaluare pentru colectarea feedback-ului de la elevi.
+Gestionat diverse responsabilități administrative și birocratice.
+Educație și Certificări
+Licență în Psihologie, Universitatea de Stat din Moldova
+Curs de QA Manual, CodeAcademy Moldova
+Curs de QA Automation, CodeAcademy Moldova
+Abilități Tehnice
+Limbaje de programare: Java (nivel de bază), JavaScript (nivel de bază), PHP/Laravel (nivel de bază)
+Tehnologii și instrumente: Selenium WebDriver (nivel mediu), HTML (nivel mediu), CSS (nivel de bază), Bash scripting (nivel de bază), MySQL/MariaDB (nivel de bază)
+Tool-uri utilizate: Jira, Zephyr, Linux, Docker, Postman/Insomnia, Git, Browserstack
+
+
+-----------------------------------------------------
+
+ABOUT ME
+I am a diligent, detail-oriented, and proactive QA professional with solid experience in both manual and automated testing. I possess strong analytical and problem-solving skills, complemented by effective communication abilities. I am eager to learn and adopt new methodologies to enhance the quality assurance process and ensure the highest product standards.
+
+WORK EXPERIENCE
+
+QA Specialist / QA Developer
+Identi, [Date of Employment]
+Tech Stack & Tools:
+
+Languages & Technologies: Java, Selenium WebDriver, REST APIs, HTML, CSS, PHP/Laravel, Bash scripting, MySQL/MariaDB
+Tools: Jira, Zephyr, Linux, Docker, Postman/Insomnia, Git, Browserstack
+Responsibilities:
+
+Ensured product quality for a cloaking system, CRM, and multiple landing pages (LPs).
+Built and maintained automated test suites to streamline testing processes and improve product reliability.
+Executed and documented testing scenarios and reported bugs, creating detailed tickets in Jira.
+Conducted regression, integration, performance/load, and compatibility tests across various platforms, including desktops and foldable devices.
+Communicated with developers, project/product managers, and CTOs to report issues and propose solutions.
+Authored and maintained both business process documentation and technical guides.
+Conducted RESTful API testing and executed automated performance tests.
+Job Description:
+Worked on projects involving a cloaking system and a CRM aimed at data manipulation and the integration of various third-party services. Developed automated tests and performed in-depth quality assessments, ensuring high standards and efficient bug resolution.
+
+Computer Science Teacher
+[Institution, Dates]
+Responsibilities:
+
+Delivered lessons on computer basics and introductory programming, including Scratch.
+Maintained classroom management and conducted evaluations to gather feedback from students.
+Handled various administrative and bureaucratic duties.
+EDUCATION AND CERTIFICATIONS
+
+Bachelor’s Degree in Psychology, State University of Moldova
+QA Manual Course, CodeAcademy Moldova
+QA Automation Course, CodeAcademy Moldova
+DIGITAL SKILLS
+
+Testing & QA:
+
+Selenium WebDriver, Java (intermediate), HTML (intermediate), CSS (basic), PHP/Laravel (basic), Bash scripting (basic), MySQL/MariaDB (basic)
+Tools & Platforms:
+
+Project Management & Issue Tracking: Jira, Zephyr
+DevOps & Environment: Docker, Linux
+API Testing & Documentation: Postman, Insomnia
+Version Control & Collaboration: Git, Browserstack
+LANGUAGE SKILLS
+
+Mother tongue: Romanian
+English:
+Listening: B2
+Reading: B2
+Writing: B1
+Spoken Production: B1
+Spoken Interaction: B1
