@@ -42,7 +42,7 @@ Educatie si certificari:
 - Cursul de QA Automation predat de CodeAcademy Moldova
 
 -------------------------------------------------------------------------------------------------------------
-
+Exemplu furnizat de GPT
 Experiență Profesională
 QA Specialist / QA Developer
 Identi, [Perioada de angajare]
