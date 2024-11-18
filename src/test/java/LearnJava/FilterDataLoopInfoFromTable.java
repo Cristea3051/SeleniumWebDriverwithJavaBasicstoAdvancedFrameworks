@@ -39,11 +39,19 @@ public class FilterDataLoopInfoFromTable {
 
         // Scan thename column with getText() option
         // For example Beans->print the price of the Beans 
-
-       List<String> price = elementsList.stream().filter(s -> s.getText().contains("Beans"))
-            .map(s->getPriceVeggie(s)).collect(Collectors.toList());
+        List<String> price;
+        do{
+       List<WebElement> rows = driver.findElements(By.xpath("//div[@class='products-wrapper']//table//tr//td[1]"));
+       price = rows.stream().filter(s -> s.getText().contains("Rice"))
+            .map(s->getPriceVeggie(s)).collect(Collectors.toList()); 
 
             price.forEach(a->System.out.println(a));
+
+            // navigate to the page that contains rice and scan it
+            if(price.size()<1){
+                 driver.findElement(By.xpath("//a[@aria-label='Next']")).click();
+            }
+        }while(price.size()<1);
 
             driver.quit();
 
