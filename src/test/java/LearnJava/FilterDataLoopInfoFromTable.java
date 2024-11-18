@@ -15,13 +15,15 @@ public class FilterDataLoopInfoFromTable {
         
         WebDriver driver = new ChromeDriver();
 
+        driver.manage().window().maximize();
+
         driver.get("https://rahulshettyacademy.com/seleniumPractise/#/offers");
 
         // Click on column
         driver.findElement(By.cssSelector("th[aria-label='Veg/fruit name: activate to sort column ascending']")).click();
 
         // Capture all webelements into list 
-         List<WebElement> elementsList = driver.findElements(By.cssSelector(".table > tbody > tr"));
+         List<WebElement> elementsList = driver.findElements(By.xpath("//div[@class='products-wrapper']//table//tr//td[1]"));
 
          // Extract the text
          List<String> originalList = elementsList.stream().map(s->s.getText()).collect(Collectors.toList());
@@ -35,5 +37,20 @@ public class FilterDataLoopInfoFromTable {
         // Check if is sortet with assertions
         Assert.assertTrue(originalList.equals(sortedList));
 
+        // Scan thename column with getText() option
+        // For example Beans->print the price of the Beans 
+
+       List<String> price = elementsList.stream().filter(s -> s.getText().contains("Beans"))
+            .map(s->getPriceVeggie(s)).collect(Collectors.toList());
+
+            price.forEach(a->System.out.println(a));
+
+            driver.quit();
+
     }
+    private static String getPriceVeggie(WebElement s){
+
+       String pricevalue = s.findElement(By.xpath("following-sibling::td[1]")).getText(); 
+        return pricevalue;
+    } 
 }
