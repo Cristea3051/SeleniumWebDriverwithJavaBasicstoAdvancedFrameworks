@@ -22,12 +22,14 @@ public class RelativeLocators {
         // Locate with to left
         WebElement elecmentLeft = driver.findElement(By.xpath("//label[text()='Check me out if you Love IceCreams!']"));
         driver.findElement(with(By.tagName("input")).toLeftOf(elecmentLeft)).click();
-        
-          // Locate with to right
-          WebElement elecmentRight = driver.findElement(By.xpath("//label[text()='Employment Status: ']"));
-          driver.findElement(with(By.tagName("input")).toRightOf(elecmentRight)).click();
 
-        // driver.quit();
+        // Locate with to right
+        WebElement elecmentRight = driver.findElement(By.xpath("//label[text()='Employment Status: ']"));
+        driver.findElement(with(By.tagName("input")).toRightOf(elecmentRight)).click();
+
+        WebElement rdb = driver.findElement(By.id("inlineRadio1"));
+        System.out.println(driver.findElement(with(By.tagName("label")).toRightOf(rdb)).getText());
+        driver.quit();
 
     }
 }
