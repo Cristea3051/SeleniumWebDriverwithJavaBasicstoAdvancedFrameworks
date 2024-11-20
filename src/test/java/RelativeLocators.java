@@ -18,9 +18,16 @@ public class RelativeLocators {
         // Locate with below
         WebElement dateBirth = driver.findElement(By.cssSelector("[for='dateofBirth']"));
         driver.findElement(with(By.tagName("input")).below(dateBirth)).click();
-        
 
-        driver.quit();
+        // Locate with to left
+        WebElement elecmentLeft = driver.findElement(By.xpath("//label[text()='Check me out if you Love IceCreams!']"));
+        driver.findElement(with(By.tagName("input")).toLeftOf(elecmentLeft)).click();
+        
+          // Locate with to right
+          WebElement elecmentRight = driver.findElement(By.xpath("//label[text()='Employment Status: ']"));
+          driver.findElement(with(By.tagName("input")).toRightOf(elecmentRight)).click();
+
+        // driver.quit();
 
     }
 }
