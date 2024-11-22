@@ -11,7 +11,7 @@ import java.time.Duration;
 public class FilterUsingSearch {
 
     public static void main(String[] args) {
-        WebDriver driver = new ChromeDriver();  // Inițializați driverul
+        WebDriver driver = new ChromeDriver(); 
         try {
             driver.manage().window().maximize();
             driver.get("https://rahulshettyacademy.com/seleniumPractise/#/offers");
@@ -29,7 +29,7 @@ public class FilterUsingSearch {
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
-            driver.quit();  // Închidem driverul manual
+            driver.quit(); 
         }
     }
 }
