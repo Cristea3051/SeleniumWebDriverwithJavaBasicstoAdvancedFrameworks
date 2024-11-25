@@ -26,7 +26,7 @@ public class MultipleWindows {
 
         String getTextTab1 = driver.findElement(By.cssSelector("h3")).getText();
 
-        System.out.println(getTextTab2 + " ---text from tab 2   " + getTextTab1 + " ---text from tab 1");
+        System.out.println(getTextTab2 + " ---text from tab 2 and " + getTextTab1 + " ---text from tab 1");
 
     }
 }
