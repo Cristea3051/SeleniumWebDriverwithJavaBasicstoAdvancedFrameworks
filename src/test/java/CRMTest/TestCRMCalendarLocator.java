@@ -1,5 +1,6 @@
 package CRMTest;
 import java.time.Duration;
+import java.util.List;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -26,21 +27,26 @@ public class TestCRMCalendarLocator {
 
         System.out.println(driver.findElement(By.cssSelector("span.d-sm-inline-block")).getText());
 
-        driver.get("http://crm-dash/google-dashboard/sc-campaigns");
+        driver.get("http://crm-dash/google-accounts");
 
         Thread.sleep(5000);
 
-        driver.findElement(By.cssSelector("i.fa-calendar:nth-of-type(1)")).click();
 
-        driver.findElement(By.xpath(
-                "//div[@style='display: block; top: 222.594px; left: auto; right: 0px;'] //li[@data-range-key='All Time']"))
-                .click();
+        driver.findElement(By.cssSelector("button.btn-dual:nth-child(5)")).click();
 
-        WebElement staticDropdown = driver.findElement(
-                By.xpath("//div[@id='sc-campaigns-list_length'] //select[@name='sc-campaigns-list_length']"));
-        Select dropdown = new Select(staticDropdown);
-        dropdown.selectByIndex(0);
+        Thread.sleep(5000); 
 
-        driver.findElement(By.xpath("(//button[@class='btn-block-option'] //i[@class='si si-arrow-up'])[4]")).click();
+        driver.findElement(By.cssSelector("input.form-control.js-maxlength[name='id_verification'][data-modal-field-id='create_id_verification']")).click();
+
+        // List<WebElement> IdVerificationDateElements = driver.findElements(
+        //         By.cssSelector("div.flatpickr-calendar:nth-child(29) > div:nth-child(2) > div:nth-child(1) > div:nth-child(2) > div:nth-child(1) > span"));
+
+            
+        driver.findElement(By.cssSelector("div.flatpickr-calendar:nth-child(29) > div:nth-child(2) > div:nth-child(1) > div:nth-child(2) > div:nth-child(1) > span:nth-child(7)")).click();
+      
+        driver.findElement(By.name("input.form-control.js-maxlength[name='2fa'][data-modal-field-id='create_2fa']")).click();
+
+        driver.quit();
+
     }
 }
