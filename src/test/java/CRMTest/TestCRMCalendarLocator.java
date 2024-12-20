@@ -44,7 +44,7 @@ public class TestCRMCalendarLocator {
             
         driver.findElement(By.cssSelector("div.flatpickr-calendar:nth-child(29) > div:nth-child(2) > div:nth-child(1) > div:nth-child(2) > div:nth-child(1) > span:nth-child(7)")).click();
       
-        driver.findElement(By.name("input.form-control.js-maxlength[name='2fa'][data-modal-field-id='create_2fa']")).click();
+        driver.findElement(By.name("input.form-control.js-maxlength[name='2fa'][data-modal-field-id='create_2fa']")).sendKeys();
 
         driver.quit();
 
